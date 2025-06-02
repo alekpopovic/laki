@@ -1,0 +1,2 @@
+defmodule Laki do
+end
