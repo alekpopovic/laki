@@ -14,7 +14,8 @@ defmodule Laki.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      mod: {Laki.Application, []}
     ]
   end
 
@@ -23,7 +24,8 @@ defmodule Laki.MixProject do
     [
       {:ecto_sql, "~> 3.12"},
       {:postgrex, "~> 0.20.0"},
-      {:jason, "~> 1.4"}
+      {:jason, "~> 1.4"},
+      {:crontab, "~> 1.1"}
     ]
   end
 end
