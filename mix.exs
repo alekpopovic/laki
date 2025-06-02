@@ -21,7 +21,9 @@ defmodule Laki.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-
+      {:ecto_sql, "~> 3.12"},
+      {:postgrex, "~> 0.20.0"},
+      {:jason, "~> 1.4"}
     ]
   end
 end
