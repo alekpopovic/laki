@@ -5,8 +5,8 @@ defmodule Laki.Repo.Migrations.CreateJobExecutions do
     create table(:job_executions) do
       add :job_id, references(:cron_jobs, on_delete: :delete_all)
       add :status, :string, null: false
-      add :started_at, :utc_datetime
-      add :completed_at, :utc_datetime
+      add :started_at, :naive_datetime_usec
+      add :completed_at, :naive_datetime_usec
       add :result, :text
       add :error, :text
       add :node_id, :string

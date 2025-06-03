@@ -9,8 +9,8 @@ defmodule Laki.Repo.Migrations.CreateCronJobs do
       add :function, :string, null: false
       add :args, :text
       add :enabled, :boolean, default: true
-      add :next_run_at, :utc_datetime
-      add :last_run_at, :utc_datetime
+      add :next_run_at, :naive_datetime_usec
+      add :last_run_at, :naive_datetime_usec
       add :node_id, :string
       add :metadata, :map, default: %{}
 

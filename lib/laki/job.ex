@@ -4,6 +4,8 @@ defmodule Laki.Job do
 
   alias Laki.JobExecution, as: JobExecution
 
+  @timestamps_opts [type: :naive_datetime_usec]
+
   schema "cron_jobs" do
     field :name, :string
     field :cron_expression, :string
@@ -11,8 +13,8 @@ defmodule Laki.Job do
     field :function, :string
     field :args, :string
     field :enabled, :boolean, default: true
-    field :next_run_at, :utc_datetime
-    field :last_run_at, :utc_datetime
+    field :next_run_at, :naive_datetime_usec
+    field :last_run_at, :naive_datetime_usec
     field :node_id, :string
     field :metadata, :map, default: %{}
 
@@ -47,7 +49,9 @@ defmodule Laki.Job do
       expression ->
         case Crontab.CronExpression.Parser.parse(expression) do
           {:ok, cron} ->
-            next_run = Crontab.Scheduler.get_next_run_date(cron, DateTime.utc_now())
+            next_run = Crontab.Scheduler.get_next_run_date(cron, NaiveDateTime.utc_now())
+
+            dbg(next_run)
             put_change(changeset, :next_run_at, next_run)
           {:error, _} -> changeset
         end

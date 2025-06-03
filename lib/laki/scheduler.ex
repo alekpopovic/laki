@@ -5,15 +5,14 @@ defmodule Laki.Scheduler do
 
   @check_interval 60_000 # Check every minute
 
+  @spec start_link() :: :ignore | {:error, any()} | {:ok, pid()}
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
   def init(_opts) do
-    #:pg.start(:laki)
-    #:pg.join(:laki, node())
-
     schedule_check()
+
     {:ok, %{node_id: Atom.to_string(node())}}
   end
 

@@ -4,10 +4,12 @@ defmodule Laki.JobExecution do
 
   alias Laki.Job, as: Job
 
+  @timestamps_opts [type: :naive_datetime_usec]
+
   schema "job_executions" do
     field :status, :string
-    field :started_at, :utc_datetime
-    field :completed_at, :utc_datetime
+    field :started_at, :naive_datetime_usec
+    field :completed_at, :naive_datetime_usec
     field :result, :string
     field :error, :string
     field :node_id, :string
